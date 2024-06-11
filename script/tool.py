@@ -5,8 +5,8 @@ import os, shutil
 import ctypes
 from subprocess import Popen, PIPE
 
-path_prompt_x32 = r'C:\"Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\vcvars32.bat"'
-path_prompt_x64 = r'C:\"Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\amd64\vcvars64.bat"'
+path_prompt_x32 = r'C:\"Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvars32.bat"'
+path_prompt_x64 = r'C:\"Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvars64.bat"'
 
 path_curr_dir   = os.path.dirname(os.path.abspath(__file__))
 path_main_dir   = r'C:\VBoxBuild'                   #os.path.abspath(f'{path_curr_dir}/../bin')

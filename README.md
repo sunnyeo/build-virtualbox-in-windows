@@ -2,16 +2,16 @@
 
 ## Introduction
 
-[This repository](https://github.com/VirtualBoBs/build-virtualbox-in-windows) provides a set of scripts which will help you compile VirtualBox easily.
+[This repository](https://github.com/VirtualBoBs/build-virtualbox-in-windows) provides a set of scripts that will help you compile VirtualBox easily.
 
-You can find the official manual to compile VirtualBox in Windows from [the official site](https://www.virtualbox.org/wiki/Windows%20build%20instructions), but it's too obsolete to follow at this time. So, we wrote python scripts which prepare required libraries for compilation, and compile VirtualBox automatically.
+You can find the official manual to compile VirtualBox in Windows from [the official site](https://www.virtualbox.org/wiki/Windows%20build%20instructions), but it's too obsolete to follow at this time. So, we wrote Python scripts that prepare required libraries for compilation, and compile VirtualBox automatically.
 
 What you need to do is only to install pre-requisites for the compilation, and run the scripts.
 
 ## Features
 
-- It downloads or compiles the followings: 7-Zip, MinGW, SDL, SSL, cURL, Qt5
-- It creates and registers a credential which is needed to compile drivers in Windows.
+- It downloads or compiles the following: 7-Zip, MinGW, SDL, SSL, cURL, Qt5
+- It creates and registers a credential that is needed to compile drivers in Windows.
 - It manages dependencies in the compilation.
 - It compiles VirtualBox binaries.
 
@@ -19,7 +19,7 @@ What you need to do is only to install pre-requisites for the compilation, and r
 
 - Windows 10
 - Python (≥ 3.8)
-- Enough spaces (at least 20GB)
+- Enough space (at least 20GB)
 
 ## Building
 
@@ -27,30 +27,31 @@ To build VirtualBox via the scripts, you should follow the steps below.
 
 ### 1. Set Up Environment
 
-Before using the scripts, you need to install the followings.
+Before using the scripts, you need to install the following.
 
-- Visual Studio 2010 (Tested on **Professional**)
-- [Visual Studio 2010 SP1](https://kovepg.tistory.com/entry/비주얼-스튜디오-2010-서비스팩1Visual-Studio-2010-SP1-설치파일)
-- [WinSDK 7.1](https://www.microsoft.com/en-us/download/details.aspx?id=8279)
-- [WinSDK 8.1](https://developer.microsoft.com/ko-kr/windows/downloads/sdk-archive/)
-- [WinDDK 7.1](https://www.microsoft.com/en-us/download/details.aspx?displaylang=en&id=11800)
-- [SSL 32bit](https://slproweb.com/download/Win32OpenSSL-1_1_1i.exe)
-- [SSL 64bit](https://slproweb.com/download/Win64OpenSSL-1_1_1i.exe)
+- Visual Studio 2019 (Tested on **Professional**)
+  - Desktop development with C++ -> WinSDK 10.0.22000.0
+- [WinDDK 10.0.22000.1](https://learn.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk)
+- [WinDDK 7.1](https://www.microsoft.com/en-us/download/details.aspx?id=11800)
+- [SSL 32bit/64bit](https://slproweb.com/products/Win32OpenSSL.html)
 
-If at least one of them is not installed properly, you could be in trouble with compile errors afterwards. And, we recommend you install them **in their default paths**.
+If at least one of them is not installed properly, you could be in trouble with compile errors afterward. And, we recommend you install them **in their default paths**.
 
 ### 2. Set Up Privilege
 
-Before going into any steps, you should satisfy the followings:
+Before going into any steps, you should satisfy the following:
 
 - Test Mode
 - Root Privilege
 
 You can turn on the test mode with the following:
 
-```cmd
-bcdedit /set testsigning on
-```
+
+- 1. Disable Secure Boot in BIOS
+- 2. Turn on test mode
+  ```cmd
+  bcdedit /set testsigning on
+  ```
 
 Note that **you MUST reboot your PC** when you turned on the test mode **for the first time**.
 

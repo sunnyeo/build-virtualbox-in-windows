@@ -1,11 +1,12 @@
 url_7za         = r'https://www.7-zip.org/a/7za920.zip'
 url_mingw       = r'https://jaist.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win64/Personal%20Builds/rubenvb/gcc-4.5-release/x86_64-w64-mingw32-gcc-4.5.4-release-win64_rubenvb.7z'
 url_sdl         = r'http://www.libsdl.org/release/SDL-devel-1.2.15-VC.zip'
-url_sslx64      = r'https://slproweb.com/download/Win64OpenSSL-1_1_1h.exe'
-url_sslx32      = r'https://slproweb.com/download/Win32OpenSSL-1_1_1h.exe'
+# url_sslx64      = r'https://slproweb.com/download/Win64OpenSSL-1_1_1h.exe'
+# url_sslx32      = r'https://slproweb.com/download/Win32OpenSSL-1_1_1h.exe'
 url_curl        = r'https://curl.se/download/curl-7.64.1.zip'
-url_qt5         = r'http://download.qt.io/new_archive/qt/5.6/5.6.3/single/qt-everywhere-opensource-src-5.6.3.zip'
-url_vbox        = r'https://download.virtualbox.org/virtualbox/6.1.16/VirtualBox-6.1.16.tar.bz2'
+# url_qt5         = r'http://download.qt.io/new_archive/qt/5.6/5.6.3/single/qt-everywhere-opensource-src-5.6.3.zip'
+url_qt5         = r'https://download.qt.io/new_archive/qt/5.14/5.14.2/single/qt-everywhere-src-5.14.2.zip'
+url_vbox        = r'https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18.tar.bz2'
 
 from tool import *
 
@@ -27,6 +28,10 @@ def main():
         print('[-] Copy SSL')
         shutil.copytree('C:/Program Files/OpenSSL-Win64', f'{path_main_dir}/SSL/OpenSSL-Win64')
         shutil.copytree('C:/Program Files (x86)/OpenSSL-Win32', f'{path_main_dir}/SSL/OpenSSL-Win32')
+        shutil.copyfile(f'{path_main_dir}/SSL/OpenSSL-Win64/lib/VC/x64/MTd/libcrypto.lib ', f'{path_main_dir}/SSL/OpenSSL-Win64/lib')
+        shutil.copyfile(f'{path_main_dir}/SSL/OpenSSL-Win64/lib/VC/x64/MTd/libssl.lib ', f'{path_main_dir}/SSL/OpenSSL-Win64/lib')
+        shutil.copyfile(f'{path_main_dir}/SSL/OpenSSL-Win32/lib/VC/x86/MTd/libcrypto.lib ', f'{path_main_dir}/SSL/OpenSSL-Win32/lib')
+        shutil.copyfile(f'{path_main_dir}/SSL/OpenSSL-Win32/lib/VC/x86/MTd/libssl.lib ', f'{path_main_dir}/SSL/OpenSSL-Win32/lib')
     if create_folder(f'{path_main_dir}/7za'):
         print('[-] Download 7za')
         extract_to(url_7za, f'{path_main_dir}/7za', True)
@@ -50,7 +55,7 @@ def main():
     execute_batch_x32('build_x32.bat')
     execute_batch_x64('build_x64.bat')
     
-    os.chdir(f'{path_main_dir}/Qt/qt-everywhere-opensource-src-5.6.3')
+    os.chdir(f'{path_main_dir}/Qt/qt-everywhere-src-5.14.2')
     execute_batch_x64_inst('nmake\nnmake install')
     
     os.chdir(path_curr_dir)
